@@ -1,0 +1,13 @@
+{
+ "locations": ["Office", "Sector 5", "Sector 12", "Market", "Station", "Park Road"],
+ "roads": [
+  ["Office", "Sector 5", 4],
+  ["Office", "Market", 3],
+  ["Sector 5", "Sector 12", 5],
+  ["Sector 5", "Market", 2],
+  ["Market", "Station", 6],
+  ["Sector 12", "Park Road", 4],
+  ["Station", "Park Road", 3],
+  ["Market", "Park Road", 7]
+ ]
+}

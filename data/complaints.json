@@ -1,0 +1,12 @@
+[
+ {"id": 101, "category": "Road",     "location": "Sector 5",   "date": "2026-10-01", "status": "Pending",     "priority": 8, "effort": 4, "description": "Large pothole on main road"},
+ {"id": 102, "category": "Water",    "location": "Sector 12",  "date": "2026-10-01", "status": "Pending",     "priority": 9, "effort": 3, "description": "No water supply for two days"},
+ {"id": 103, "category": "Light",    "location": "Market",     "date": "2026-10-02", "status": "Pending",     "priority": 5, "effort": 1, "description": "Streetlight not working"},
+ {"id": 104, "category": "Waste",    "location": "Sector 5",   "date": "2026-10-02", "status": "Pending",     "priority": 4, "effort": 2, "description": "Garbage not collected"},
+ {"id": 105, "category": "Drainage", "location": "Station",    "date": "2026-10-03", "status": "Pending",     "priority": 9, "effort": 5, "description": "Blocked drain causing waterlogging"},
+ {"id": 106, "category": "Road",     "location": "Market",     "date": "2026-10-03", "status": "In Progress", "priority": 6, "effort": 3, "description": "Broken footpath"},
+ {"id": 107, "category": "Water",    "location": "Park Road",  "date": "2026-10-04", "status": "Pending",     "priority": 7, "effort": 2, "description": "Leaking water pipeline"},
+ {"id": 108, "category": "Light",    "location": "Sector 12",  "date": "2026-10-04", "status": "Pending",     "priority": 3, "effort": 1, "description": "Flickering streetlight"},
+ {"id": 109, "category": "Waste",    "location": "Station",    "date": "2026-10-05", "status": "Pending",     "priority": 6, "effort": 2, "description": "Overflowing dustbin"},
+ {"id": 110, "category": "Drainage", "location": "Park Road",  "date": "2026-10-05", "status": "Pending",     "priority": 5, "effort": 3, "description": "Slow drainage after rain"}
+]
