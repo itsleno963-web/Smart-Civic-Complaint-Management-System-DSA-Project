@@ -1,0 +1,98 @@
+==============================================================================
+   SMART CIVIC COMPLAINT MANAGEMENT SYSTEM - DEMO RUN
+==============================================================================
+
+### MODULE 1: TREES ###
+
+All complaints (in-order traversal of AVL tree = sorted by ID)
+------------------------------------------------------------------------------
+ID   CATEGORY  LOCATION   PRIORITY EFFORT STATUS      DESCRIPTION
+------------------------------------------------------------------------------
+101  Road      Sector 5   8        4      Pending     Large pothole on main road
+102  Water     Sector 12  9        3      Pending     No water supply for two days
+103  Light     Market     5        1      Pending     Streetlight not working
+104  Waste     Sector 5   4        2      Pending     Garbage not collected
+105  Drainage  Station    9        5      Pending     Blocked drain causing waterl
+106  Road      Market     6        3      In Progress Broken footpath
+107  Water     Park Road  7        2      Pending     Leaking water pipeline
+108  Light     Sector 12  3        1      Pending     Flickering streetlight
+109  Waste     Station    6        2      Pending     Overflowing dustbin
+110  Drainage  Park Road  5        3      Pending     Slow drainage after rain
+------------------------------------------------------------------------------
+
+Search result for ID 105:
+------------------------------------------------------------------------------
+ID   CATEGORY  LOCATION   PRIORITY EFFORT STATUS      DESCRIPTION
+------------------------------------------------------------------------------
+105  Drainage  Station    9        5      Pending     Blocked drain causing waterl
+------------------------------------------------------------------------------
+
+Search result for ID 999:
+  Complaint not found.
+
+Tree traversals (complaint IDs):
+  Pre-order  : [104, 102, 101, 103, 108, 106, 105, 107, 109, 110]
+  In-order   : [101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+  Post-order : [101, 103, 102, 105, 107, 106, 110, 109, 108, 104]
+  Level-order: [104, 102, 108, 101, 103, 106, 109, 105, 107, 110]
+  Tree height: 4   Balanced: True
+
+BST vs AVL: inserting IDs 1..15 in sorted order
+  Plain BST height : 15   (skewed - behaves like a linked list, search O(n))
+  AVL tree height  :  4   (balanced after 11 rotations, search O(log n))
+
+Max Heap: handling complaints in priority order (top 5)
+  1. ID 102  priority 9  Water     Sector 12  No water supply for two days
+  2. ID 105  priority 9  Drainage  Station    Blocked drain causing waterlogging
+  3. ID 101  priority 8  Road      Sector 5   Large pothole on main road
+  4. ID 107  priority 7  Water     Park Road  Leaking water pipeline
+  5. ID 106  priority 6  Road      Market     Broken footpath
+
+### MODULE 2: GRAPHS ###
+
+Location graph (adjacency list):
+  Office     -> Sector 5 (4 km), Market (3 km)
+  Sector 5   -> Office (4 km), Sector 12 (5 km), Market (2 km)
+  Sector 12  -> Sector 5 (5 km), Park Road (4 km)
+  Market     -> Office (3 km), Sector 5 (2 km), Station (6 km), Park Road (7 km)
+  Station    -> Market (6 km), Park Road (3 km)
+  Park Road  -> Sector 12 (4 km), Station (3 km), Market (7 km)
+
+  Neighbours of Market: {'Office': 3, 'Sector 5': 2, 'Station': 6, 'Park Road': 7}
+  BFS order from Market: ['Market', 'Office', 'Park Road', 'Sector 5', 'Station', 'Sector 12']
+
+### MODULE 3: DYNAMIC PROGRAMMING ###
+
+0/1 Knapsack (Dynamic Programming) - capacity 8 hours
+
+Optimal selection: total priority = 27, hours used = 8
+------------------------------------------------------------------------------
+ID   CATEGORY  LOCATION   PRIORITY EFFORT STATUS      DESCRIPTION
+------------------------------------------------------------------------------
+102  Water     Sector 12  9        3      Pending     No water supply for two days
+103  Light     Market     5        1      Pending     Streetlight not working
+107  Water     Park Road  7        2      Pending     Leaking water pipeline
+109  Waste     Station    6        2      Pending     Overflowing dustbin
+------------------------------------------------------------------------------
+For comparison, greedy 'highest priority first' gives total priority = 18
+
+### MODULE 4: BACKTRACKING, BRANCH AND BOUND ###
+
+Route planning (Backtracking + Branch and Bound) for stops: ['Market', 'Park Road', 'Sector 12', 'Station']
+  Best route : Office -> Market -> Station -> Park Road -> Sector 12 -> Office
+  Total distance: 25 km
+  Search nodes explored: 15, branches pruned: 9
+
+### MODULE 5: ADVANCED DATA STRUCTURES (BINOMIAL HEAP) ###
+
+Binomial Heap: merging department priority queues
+  Road      heap: 2 complaints, top = ID 101 (priority 8), tree orders [1]
+  Water     heap: 2 complaints, top = ID 102 (priority 9), tree orders [1]
+  Light     heap: 2 complaints, top = ID 103 (priority 5), tree orders [1]
+  Waste     heap: 2 complaints, top = ID 109 (priority 6), tree orders [1]
+  Drainage  heap: 2 complaints, top = ID 105 (priority 9), tree orders [1]
+  --> Merged city-level heap: 10 complaints, tree orders [1, 3]
+  Highest-priority complaints city-wide:
+     1. ID 102  priority 9  Water     Sector 12
+     2. ID 105  priority 9  Drainage  Station
+     3. ID 101  priority 8  Road      Sector 5
